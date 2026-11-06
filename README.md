@@ -1,6 +1,6 @@
-# Weight / Memory
+# LAMP — Latent Associative Memory Programming
 
-**[Open the interactive web implementation →](https://l1001.vt.domains/weight-memory/)**
+**[Open the interactive web implementation →](https://l1001.vt.domains/LAMP/)**
 
 An educational laboratory for exploring persistent, user-editable memory in a frozen transformer. Ask a question, write a different answer into a small memory module, and inspect the numerical weights that change its behavior.
 
@@ -12,7 +12,7 @@ The graphic is illustrative; its highlighted values are not a live view of the m
 
 ## Try it
 
-1. Open the [web laboratory](https://l1001.vt.domains/weight-memory/).
+1. Open the [web laboratory](https://l1001.vt.domains/LAMP/).
 2. Ask **“What is the capital of Texas?”** The frozen model answers **Austin**.
 3. Select **Sacramento** and click **Write into memory**.
 4. Compare the original answer with the memory-assisted answer.
@@ -108,7 +108,7 @@ Memory exports are bound to the base model identity. Retraining and re-exporting
 
 ## Deploy on your own website
 
-Upload **[weight-memory-web.zip](weight-memory-web.zip)** and extract it into the desired hosting directory, such as `public_html/weight-memory/`. Its files belong directly in that directory. The included `.htaccess` sets the JavaScript MIME type for `.mjs` on Apache. Other servers need the equivalent MIME configuration. No database or server-side inference is required.
+Upload **[LAMP.zip](LAMP.zip)** into your domain’s document root (usually `public_html/`) and extract it there. The archive contains a folder named exactly `LAMP`, so the files land in `public_html/LAMP/`. Do not extract it inside another `LAMP` folder. Open `https://l1001.vt.domains/LAMP/` after uploading; capitalization matters. The included `.htaccess` sets the JavaScript MIME type for `.mjs` on Apache. Other servers need the equivalent MIME configuration. No database or server-side inference is required.
 
 See [deployment instructions](web/DEPLOY.txt). The ZIP is a convenience snapshot; `web/` contains the current editable source.
 
@@ -130,7 +130,7 @@ See [deployment instructions](web/DEPLOY.txt). The ZIP is a convenience snapshot
 
 ## Technical paper and related work
 
-[**Forward-Only Associative Memory in a Frozen Toy Transformer (PDF)**](paper/main.pdf) describes the method, exact-source reconstruction property, experimental setup, and limitations. The [LaTeX source](paper/main.tex) is also included. Compile it with a standard LaTeX toolchain or open it in a compatible editor with PDF preview.
+[**LAMP: Latent Associative Memory Programming in a Frozen Toy Transformer (PDF)**](paper/main.pdf) describes the method, exact-source reconstruction property, experimental setup, and limitations. The [LaTeX source](paper/main.tex) is also included. Compile it with a standard LaTeX toolchain or open it in a compatible editor with PDF preview.
 
 This project is an educational combination of existing ideas, not a claim of a new general memory mechanism. Relevant precedents include:
 

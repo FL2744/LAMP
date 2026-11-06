@@ -1,9 +1,11 @@
-WEIGHT / MEMORY — STATIC WEBSITE
+LAMP — LATENT ASSOCIATIVE MEMORY PROGRAMMING
+STATIC WEBSITE
 
-Upload the contents of this folder into a folder such as public_html/weight-memory/
-on the hosting account for l1001.vt.domains. If that domain has its own document
-root, use that root instead of public_html. Open:
-https://l1001.vt.domains/weight-memory/
+Upload LAMP.zip into the document root for l1001.vt.domains (usually public_html/)
+and extract it there. The ZIP already contains the LAMP folder. Do not extract
+it inside another LAMP folder. If uploading individual files instead, put all
+files from this folder into public_html/LAMP/. Capitalization matters. Open:
+https://l1001.vt.domains/LAMP/
 
 No PHP, Python, PyTorch, npm install, database, or API key is needed on the server.
 Required files: index.html, style.css, app.mjs, engine.mjs, model.json, model.bin, weight-field.svg.

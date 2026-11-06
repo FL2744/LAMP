@@ -1,4 +1,4 @@
-# Tiny transformer memory lab
+# LAMP — terminal guide
 
 A runnable experiment for an **initially inactive, user-editable memory stored
 in neural-network weights**. It runs on CPU on an Apple silicon Mac mini. No GPU,
@@ -13,7 +13,7 @@ occupancy flag and similarity threshold.
 ## Run
 
 ```sh
-cd /path/to/weight-memory
+cd /path/to/LAMP
 ./run.sh demo
 ./run.sh chat
 ```

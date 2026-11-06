@@ -3,7 +3,7 @@
 \usepackage{amsmath,amssymb,booktabs,hyperref}
 \usepackage[T1]{fontenc}
 \hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=black}
-\title{Forward-Only Associative Memory in a Frozen Toy Transformer}
+\title{LAMP: Latent Associative Memory Programming\\in a Frozen Toy Transformer}
 \author{William Taggart\\
 \small Modern and Classical Languages and Literatures\\
 \small Virginia Tech\\
@@ -12,7 +12,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-We describe an inspectable memory adaptor that changes selected answers of a frozen transformer by directly writing recognition keys and activation differences into two parameter matrices. A writer captures a source question's hidden state and selects a donor state that the frozen model already decodes into a desired answer. It stores their difference, then conditionally adds that difference to a matching state during inference. Memory writes require forward passes but no gradient-based optimization. A two-block, 77,568-parameter question-and-answer model is augmented with 2,048 memory weights across 16 slots. A counterfactual Texas-capital edit succeeds on the exact source and one of two held-out paraphrases, with no activation on 34 unrelated held-out questions. These results establish a restricted demonstration of selective activation editing, not a general episodic-memory system. A browser implementation exposes the memory weights for direct manipulation.
+We introduce LAMP (Latent Associative Memory Programming), an inspectable memory adaptor that changes selected answers of a frozen transformer by directly writing recognition keys and activation differences into two parameter matrices. A writer captures a source question's hidden state and selects a donor state that the frozen model already decodes into a desired answer. It stores their difference, then conditionally adds that difference to a matching state during inference. Memory writes require forward passes but no gradient-based optimization. A two-block, 77,568-parameter question-and-answer model is augmented with 2,048 memory weights across 16 slots. A counterfactual Texas-capital edit succeeds on the exact source and one of two held-out paraphrases, with no activation on 34 unrelated held-out questions. These results establish a restricted demonstration of selective activation editing, not a general episodic-memory system. A browser implementation exposes the memory weights for direct manipulation.
 \end{abstract}
 
 \section{Motivation and scope}
