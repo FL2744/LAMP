@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc"><title id="title">A field of editable weights</title><desc id="desc">Decimal values inside a perfect circle. Five yellow highlights represent edited weights; these are illustrative values.</desc><circle cx="300" cy="300" r="280" fill="none" stroke="#141414" stroke-width="1.5"/>
+<text x="188.0" y="100" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.124</text>
+<text x="244.0" y="100" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.083</text>
+<text x="300.0" y="100" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.372</text>
+<text x="356.0" y="100" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">1.042</text>
+<text x="412.0" y="100" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.517</text>
+<text x="132.0" y="150" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.238</text>
+<text x="188.0" y="150" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.901</text>
+<text x="244.0" y="150" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.006</text>
+<text x="300.0" y="150" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.643</text>
+<text x="356.0" y="150" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.201</text>
+<text x="412.0" y="150" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.015</text>
+<text x="468.0" y="150" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.064</text>
+<text x="76.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.482</text>
+<text x="132.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.338</text>
+<text x="188.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.759</text>
+<rect x="219.0" y="189" width="50" height="22" fill="#ffd329"/>
+<text x="244.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.145</text>
+<text x="300.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-1.026</text>
+<text x="356.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.089</text>
+<text x="412.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.124</text>
+<text x="468.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.083</text>
+<text x="524.0" y="200" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.372</text>
+<text x="76.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">1.042</text>
+<text x="132.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.517</text>
+<text x="188.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.238</text>
+<text x="244.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.901</text>
+<text x="300.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.006</text>
+<text x="356.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.643</text>
+<text x="412.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.201</text>
+<rect x="443.0" y="239" width="50" height="22" fill="#ffd329"/>
+<text x="468.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.015</text>
+<text x="524.0" y="250" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.064</text>
+<text x="76.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.482</text>
+<text x="132.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.338</text>
+<text x="188.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.759</text>
+<text x="244.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.145</text>
+<rect x="275.0" y="289" width="50" height="22" fill="#ffd329"/>
+<text x="300.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-1.026</text>
+<text x="356.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.089</text>
+<text x="412.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.124</text>
+<text x="468.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.083</text>
+<text x="524.0" y="300" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.372</text>
+<text x="76.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">1.042</text>
+<text x="132.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.517</text>
+<text x="188.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.238</text>
+<text x="244.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.901</text>
+<text x="300.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.006</text>
+<text x="356.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.643</text>
+<text x="412.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.201</text>
+<text x="468.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.015</text>
+<text x="524.0" y="350" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.064</text>
+<text x="76.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.482</text>
+<rect x="107.0" y="389" width="50" height="22" fill="#ffd329"/>
+<text x="132.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.338</text>
+<text x="188.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.759</text>
+<text x="244.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.145</text>
+<text x="300.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-1.026</text>
+<text x="356.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.089</text>
+<text x="412.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.124</text>
+<text x="468.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.083</text>
+<text x="524.0" y="400" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.372</text>
+<text x="132.0" y="450" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">1.042</text>
+<text x="188.0" y="450" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.517</text>
+<text x="244.0" y="450" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.238</text>
+<text x="300.0" y="450" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.901</text>
+<text x="356.0" y="450" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.006</text>
+<rect x="387.0" y="439" width="50" height="22" fill="#ffd329"/>
+<text x="412.0" y="450" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.643</text>
+<text x="468.0" y="450" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.201</text>
+<text x="188.0" y="500" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.015</text>
+<text x="244.0" y="500" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.064</text>
+<text x="300.0" y="500" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.482</text>
+<text x="356.0" y="500" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">-0.338</text>
+<text x="412.0" y="500" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="12" fill="#141414">0.759</text>
+</svg>

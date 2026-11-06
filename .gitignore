@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+artifacts/toy-memory.pt
+artifacts/demo-memory.pt
+weight-memory-web/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.synctex.gz

@@ -1,0 +1,638 @@
+{
+  "scope": "Restricted one-word toy QA; base trained once; memory writes use forward passes only.",
+  "torch_version": "2.15.0",
+  "device": "cpu",
+  "base_parameters": 77568,
+  "memory_parameters": 2048,
+  "base_checkpoint_bytes": 320495,
+  "memory_checkpoint_bytes": 10821,
+  "train_accuracy": 1.0,
+  "heldout_base_accuracy": 0.9166666666666666,
+  "threshold": 0.95,
+  "checks": {
+    "blank_logits_identical": true,
+    "exact_texas_override": true,
+    "canonical_controls_unchanged": true,
+    "fresh_model_reload": true,
+    "two_independent_memories": true,
+    "replacement_reuses_slot": true,
+    "reset_restores_baseline": true,
+    "base_parameters_unchanged": true
+  },
+  "target_paraphrases_changed": 1,
+  "target_paraphrases_total": 2,
+  "unrelated_heldout_activations": 0,
+  "unrelated_heldout_total": 34,
+  "first_write": {
+    "slot": 0,
+    "threshold": 0.95,
+    "donor_question": "what is the capital of california?",
+    "donor_prediction": "sacramento",
+    "parameters_touched_at_most": 128
+  },
+  "second_write": {
+    "slot": 1,
+    "threshold": 0.95,
+    "donor_question": "are dogs mammals?",
+    "donor_prediction": "yes",
+    "parameters_touched_at_most": 128
+  },
+  "replacement": {
+    "slot": 0,
+    "threshold": 0.95,
+    "donor_question": "what is the capital of france?",
+    "donor_prediction": "paris",
+    "parameters_touched_at_most": 128
+  },
+  "baseline": [
+    {
+      "question": "What is the capital of Texas?",
+      "answer": "austin",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "Are all cats black?",
+      "answer": "no",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the capital of California?",
+      "answer": "sacramento",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the largest city in Texas?",
+      "answer": "houston",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "Are cats mammals?",
+      "answer": "yes",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the capital of France?",
+      "answer": "paris",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    }
+  ],
+  "blank": [
+    {
+      "question": "What is the capital of Texas?",
+      "answer": "austin",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "Are all cats black?",
+      "answer": "no",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the capital of California?",
+      "answer": "sacramento",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the largest city in Texas?",
+      "answer": "houston",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "Are cats mammals?",
+      "answer": "yes",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the capital of France?",
+      "answer": "paris",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    }
+  ],
+  "edited": [
+    {
+      "question": "What is the capital of Texas?",
+      "answer": "sacramento",
+      "memory_active": true,
+      "slot": 0,
+      "similarity": 1.0
+    },
+    {
+      "question": "Are all cats black?",
+      "answer": "no",
+      "memory_active": false,
+      "slot": null,
+      "similarity": -0.14422082901000977
+    },
+    {
+      "question": "What is the capital of California?",
+      "answer": "sacramento",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.21762287616729736
+    },
+    {
+      "question": "What is the largest city in Texas?",
+      "answer": "houston",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.43896421790122986
+    },
+    {
+      "question": "Are cats mammals?",
+      "answer": "yes",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.03832801431417465
+    },
+    {
+      "question": "What is the capital of France?",
+      "answer": "paris",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.09859560430049896
+    }
+  ],
+  "two_memories": [
+    {
+      "question": "What is the capital of Texas?",
+      "answer": "sacramento",
+      "memory_active": true,
+      "slot": 0,
+      "similarity": 1.0
+    },
+    {
+      "question": "Are all cats black?",
+      "answer": "yes",
+      "memory_active": true,
+      "slot": 1,
+      "similarity": 0.9999998807907104
+    },
+    {
+      "question": "What is the capital of California?",
+      "answer": "sacramento",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.21762287616729736
+    },
+    {
+      "question": "What is the largest city in Texas?",
+      "answer": "houston",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.43896421790122986
+    },
+    {
+      "question": "Are cats mammals?",
+      "answer": "yes",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.04293093830347061
+    },
+    {
+      "question": "What is the capital of France?",
+      "answer": "paris",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.09859560430049896
+    }
+  ],
+  "replaced": [
+    {
+      "question": "What is the capital of Texas?",
+      "answer": "paris",
+      "memory_active": true,
+      "slot": 0,
+      "similarity": 1.0
+    },
+    {
+      "question": "Are all cats black?",
+      "answer": "yes",
+      "memory_active": true,
+      "slot": 1,
+      "similarity": 0.9999998807907104
+    },
+    {
+      "question": "What is the capital of California?",
+      "answer": "sacramento",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.21762287616729736
+    },
+    {
+      "question": "What is the largest city in Texas?",
+      "answer": "houston",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.43896421790122986
+    },
+    {
+      "question": "Are cats mammals?",
+      "answer": "yes",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.04293093830347061
+    },
+    {
+      "question": "What is the capital of France?",
+      "answer": "paris",
+      "memory_active": false,
+      "slot": null,
+      "similarity": 0.09859560430049896
+    }
+  ],
+  "reset": [
+    {
+      "question": "What is the capital of Texas?",
+      "answer": "austin",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "Are all cats black?",
+      "answer": "no",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the capital of California?",
+      "answer": "sacramento",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the largest city in Texas?",
+      "answer": "houston",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "Are cats mammals?",
+      "answer": "yes",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    },
+    {
+      "question": "What is the capital of France?",
+      "answer": "paris",
+      "memory_active": false,
+      "slot": null,
+      "similarity": null
+    }
+  ],
+  "heldout": [
+    {
+      "question": "tell me which city is the capital of texas.",
+      "fact": "capital:texas",
+      "gold": "austin",
+      "before": "austin",
+      "after": "austin",
+      "memory_active": false,
+      "similarity": 0.8438549637794495
+    },
+    {
+      "question": "which city serves as the capital of texas?",
+      "fact": "capital:texas",
+      "gold": "austin",
+      "before": "austin",
+      "after": "sacramento",
+      "memory_active": true,
+      "similarity": 0.9842337965965271
+    },
+    {
+      "question": "tell me which city is the capital of california.",
+      "fact": "capital:california",
+      "gold": "sacramento",
+      "before": "sacramento",
+      "after": "sacramento",
+      "memory_active": false,
+      "similarity": 0.17510715126991272
+    },
+    {
+      "question": "which city serves as the capital of california?",
+      "fact": "capital:california",
+      "gold": "sacramento",
+      "before": "sacramento",
+      "after": "sacramento",
+      "memory_active": false,
+      "similarity": 0.21072490513324738
+    },
+    {
+      "question": "tell me which city is the capital of florida.",
+      "fact": "capital:florida",
+      "gold": "tallahassee",
+      "before": "tallahassee",
+      "after": "tallahassee",
+      "memory_active": false,
+      "similarity": 0.05728796124458313
+    },
+    {
+      "question": "which city serves as the capital of florida?",
+      "fact": "capital:florida",
+      "gold": "tallahassee",
+      "before": "tallahassee",
+      "after": "tallahassee",
+      "memory_active": false,
+      "similarity": 0.08958910405635834
+    },
+    {
+      "question": "tell me which city is the capital of ohio.",
+      "fact": "capital:ohio",
+      "gold": "columbus",
+      "before": "columbus",
+      "after": "columbus",
+      "memory_active": false,
+      "similarity": 0.03467102348804474
+    },
+    {
+      "question": "which city serves as the capital of ohio?",
+      "fact": "capital:ohio",
+      "gold": "columbus",
+      "before": "columbus",
+      "after": "columbus",
+      "memory_active": false,
+      "similarity": -0.01353866420686245
+    },
+    {
+      "question": "tell me which city is the capital of france.",
+      "fact": "capital:france",
+      "gold": "paris",
+      "before": "paris",
+      "after": "paris",
+      "memory_active": false,
+      "similarity": 0.025102317333221436
+    },
+    {
+      "question": "which city serves as the capital of france?",
+      "fact": "capital:france",
+      "gold": "paris",
+      "before": "paris",
+      "after": "paris",
+      "memory_active": false,
+      "similarity": 0.062361717224121094
+    },
+    {
+      "question": "tell me which city is the capital of germany.",
+      "fact": "capital:germany",
+      "gold": "berlin",
+      "before": "berlin",
+      "after": "berlin",
+      "memory_active": false,
+      "similarity": 0.06275910139083862
+    },
+    {
+      "question": "which city serves as the capital of germany?",
+      "fact": "capital:germany",
+      "gold": "berlin",
+      "before": "berlin",
+      "after": "berlin",
+      "memory_active": false,
+      "similarity": 0.034110285341739655
+    },
+    {
+      "question": "tell me which city is the capital of italy.",
+      "fact": "capital:italy",
+      "gold": "rome",
+      "before": "rome",
+      "after": "rome",
+      "memory_active": false,
+      "similarity": 0.13809719681739807
+    },
+    {
+      "question": "which city serves as the capital of italy?",
+      "fact": "capital:italy",
+      "gold": "rome",
+      "before": "rome",
+      "after": "rome",
+      "memory_active": false,
+      "similarity": 0.12728768587112427
+    },
+    {
+      "question": "tell me which city is the capital of japan.",
+      "fact": "capital:japan",
+      "gold": "tokyo",
+      "before": "tokyo",
+      "after": "tokyo",
+      "memory_active": false,
+      "similarity": 0.019974935799837112
+    },
+    {
+      "question": "which city serves as the capital of japan?",
+      "fact": "capital:japan",
+      "gold": "tokyo",
+      "before": "tokyo",
+      "after": "tokyo",
+      "memory_active": false,
+      "similarity": 0.10613609850406647
+    },
+    {
+      "question": "tell me which city is the largest in texas.",
+      "fact": "largest:texas",
+      "gold": "houston",
+      "before": "houston",
+      "after": "houston",
+      "memory_active": false,
+      "similarity": 0.5174427032470703
+    },
+    {
+      "question": "what is the largest city of texas?",
+      "fact": "largest:texas",
+      "gold": "houston",
+      "before": "austin",
+      "after": "austin",
+      "memory_active": false,
+      "similarity": 0.821670651435852
+    },
+    {
+      "question": "tell me which city is the largest in california.",
+      "fact": "largest:california",
+      "gold": "losangeles",
+      "before": "losangeles",
+      "after": "losangeles",
+      "memory_active": false,
+      "similarity": -0.1878160685300827
+    },
+    {
+      "question": "what is the largest city of california?",
+      "fact": "largest:california",
+      "gold": "losangeles",
+      "before": "sacramento",
+      "after": "sacramento",
+      "memory_active": false,
+      "similarity": -0.19178293645381927
+    },
+    {
+      "question": "tell me which city is the largest in florida.",
+      "fact": "largest:florida",
+      "gold": "jacksonville",
+      "before": "jacksonville",
+      "after": "jacksonville",
+      "memory_active": false,
+      "similarity": -0.24089132249355316
+    },
+    {
+      "question": "what is the largest city of florida?",
+      "fact": "largest:florida",
+      "gold": "jacksonville",
+      "before": "tallahassee",
+      "after": "tallahassee",
+      "memory_active": false,
+      "similarity": -0.07527962327003479
+    },
+    {
+      "question": "tell me which city is the largest in ohio.",
+      "fact": "largest:ohio",
+      "gold": "columbus",
+      "before": "columbus",
+      "after": "columbus",
+      "memory_active": false,
+      "similarity": -0.07917088270187378
+    },
+    {
+      "question": "what is the largest city of ohio?",
+      "fact": "largest:ohio",
+      "gold": "columbus",
+      "before": "columbus",
+      "after": "columbus",
+      "memory_active": false,
+      "similarity": -0.07047417759895325
+    },
+    {
+      "question": "tell me if cats are always black.",
+      "fact": "black:cats",
+      "gold": "no",
+      "before": "no",
+      "after": "no",
+      "memory_active": false,
+      "similarity": -0.09648454934358597
+    },
+    {
+      "question": "are all of the cats black?",
+      "fact": "black:cats",
+      "gold": "no",
+      "before": "no",
+      "after": "no",
+      "memory_active": false,
+      "similarity": -0.05412591993808746
+    },
+    {
+      "question": "tell me if dogs are always black.",
+      "fact": "black:dogs",
+      "gold": "no",
+      "before": "no",
+      "after": "no",
+      "memory_active": false,
+      "similarity": -0.08630139380693436
+    },
+    {
+      "question": "are all of the dogs black?",
+      "fact": "black:dogs",
+      "gold": "no",
+      "before": "no",
+      "after": "no",
+      "memory_active": false,
+      "similarity": -0.06930723041296005
+    },
+    {
+      "question": "tell me if all cats are mammals.",
+      "fact": "mammals:cats",
+      "gold": "yes",
+      "before": "yes",
+      "after": "yes",
+      "memory_active": false,
+      "similarity": 0.010410994291305542
+    },
+    {
+      "question": "are all of the cats mammals?",
+      "fact": "mammals:cats",
+      "gold": "yes",
+      "before": "yes",
+      "after": "yes",
+      "memory_active": false,
+      "similarity": -0.10462014377117157
+    },
+    {
+      "question": "tell me if all dogs are mammals.",
+      "fact": "mammals:dogs",
+      "gold": "yes",
+      "before": "yes",
+      "after": "yes",
+      "memory_active": false,
+      "similarity": 0.008979842066764832
+    },
+    {
+      "question": "are all of the dogs mammals?",
+      "fact": "mammals:dogs",
+      "gold": "yes",
+      "before": "yes",
+      "after": "yes",
+      "memory_active": false,
+      "similarity": -0.0962134301662445
+    },
+    {
+      "question": "tell me if all fish are mammals.",
+      "fact": "mammals:fish",
+      "gold": "no",
+      "before": "no",
+      "after": "no",
+      "memory_active": false,
+      "similarity": -0.2338612973690033
+    },
+    {
+      "question": "are all of the fish mammals?",
+      "fact": "mammals:fish",
+      "gold": "no",
+      "before": "no",
+      "after": "no",
+      "memory_active": false,
+      "similarity": -0.23757776618003845
+    },
+    {
+      "question": "tell me if all birds are mammals.",
+      "fact": "mammals:birds",
+      "gold": "no",
+      "before": "no",
+      "after": "no",
+      "memory_active": false,
+      "similarity": -0.231697216629982
+    },
+    {
+      "question": "are all of the birds mammals?",
+      "fact": "mammals:birds",
+      "gold": "no",
+      "before": "no",
+      "after": "no",
+      "memory_active": false,
+      "similarity": -0.1863952875137329
+    }
+  ],
+  "seconds": 0.059534624917432666
+}
