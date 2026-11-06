@@ -130,7 +130,7 @@ See [deployment instructions](web/DEPLOY.txt). The ZIP is a convenience snapshot
 
 ## Technical paper and related work
 
-[**Forward-Only Associative Memory in a Frozen Toy Transformer**](paper/main.tex) describes the method, exact-source reconstruction property, experimental setup, and limitations. Compile the LaTeX source with a standard LaTeX toolchain or open it in a compatible editor with PDF preview.
+[**Forward-Only Associative Memory in a Frozen Toy Transformer (PDF)**](paper/main.pdf) describes the method, exact-source reconstruction property, experimental setup, and limitations. The [LaTeX source](paper/main.tex) is also included. Compile it with a standard LaTeX toolchain or open it in a compatible editor with PDF preview.
 
 This project is an educational combination of existing ideas, not a claim of a new general memory mechanism. Relevant precedents include:
 
