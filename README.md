@@ -5,7 +5,7 @@
 An educational laboratory for exploring persistent, user-editable memory in a frozen transformer. Ask a question, write a different answer into a small memory module, and inspect the numerical weights that change its behavior.
 
 <p align="center">
-  <img src="web/weight-field.svg" width="360" alt="A circular field of floating-point values with five weights highlighted in yellow">
+  <img src="web/lamp.png" width="360" alt="A desk lamp illuminating a field of numerical weights">
 </p>
 
 The graphic is illustrative; its highlighted values are not a live view of the model.
