@@ -4,7 +4,7 @@
 
 **[LAMP-Qwen on Hugging Face →](https://huggingface.co/will-taggart/LAMP-Qwen-v0.1)** 
 
-LAMP-QWen is an extension of LAMP that adds editable memory to Qwen3.5-0.8B, with a native macOS interface.
+**LAMP-QWen is an extension of LAMP that adds editable memory to Qwen3.5-0.8B, with a native macOS interface.**
 
 An educational laboratory for exploring persistent, user-editable memory in a frozen transformer. Ask a question, write a different answer into a small memory module, and inspect the numerical weights that change its behavior.
 
