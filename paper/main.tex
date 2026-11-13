@@ -12,7 +12,7 @@
 \affiliation{\department{Modern and Classical Languages and Literatures}
 \institution{Virginia Tech}\city{Blacksburg}\state{Virginia}\country{USA}}
 \email{wtaggart@vt.edu}
-\subtitle{Technical report; ACM manuscript edition, November 13, 2026}
+\subtitle{Technical Report: November 13, 2026}
 \begin{abstract}
 We introduce LAMP (Latent Associative Memory Programming), an inspectable memory adaptor that changes selected answers of a frozen transformer by directly writing recognition keys and activation differences into two parameter matrices. A writer captures a source question's hidden state and selects a donor state that the frozen model already decodes into a desired answer. It stores their difference, then conditionally adds that difference to a matching state during inference. Memory writes require forward passes but no gradient-based optimization. A two-block, 77,568-parameter question-and-answer model is augmented with 2,048 memory weights across 16 slots. A counterfactual Texas-capital edit succeeds on the exact source and one of two held-out paraphrases, with no activation on 34 unrelated held-out questions. These results establish a restricted demonstration of selective activation editing, not a general episodic-memory system. A browser implementation exposes the memory weights for direct manipulation.
 \end{abstract}
