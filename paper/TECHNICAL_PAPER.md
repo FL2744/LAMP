@@ -114,6 +114,10 @@ Next experiments should evaluate multiple training seeds, all occupied slots, th
 
 A frozen toy transformer can be selectively redirected by storing a normalized recognition key and a donor-minus-source hidden-state difference. The construction gives an exact-source guarantee under successful retrieval and a transparent interface for inspecting memory weights. Its principal value is an executable educational demonstration of forward-only associative editing, with bounded claims about memory and generalization.
 
+## AI-use disclosure
+
+This project was created with assistance from GPT-6 Astra and Codex. AI tools supported software development, technical exploration, and drafting and revision of the report. William Taggart is responsible for the research decisions and final software and documentation. AI assistance does not constitute independent validation of the implementation or its scientific claims.
+
 ## References
 
 <a id="ref-grace"></a>
@@ -135,10 +139,6 @@ A frozen toy transformer can be selectively redirected by storing a normalized r
 <a id="ref-titans"></a>
 
 5. Behrouz and Zhong and Mirrokni. 2025. *Titans: Learning to Memorize at Test Time*. arXiv:2501.00663. [https://arxiv.org/abs/2501.00663](https://arxiv.org/abs/2501.00663).
-
-## AI-use disclosure
-
-This project was created with assistance from GPT-6 Astra and Codex. AI tools supported software development, technical exploration, and drafting and revision of the report. William Taggart is responsible for the research decisions and final software and documentation. AI assistance does not constitute independent validation of the implementation or its scientific claims.
 
 ## Suggested citation
 
