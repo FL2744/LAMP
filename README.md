@@ -1,5 +1,7 @@
 # LAMP — Latent Associative Memory Programming
 
+**ACM technical paper:** [PDF](paper/main.pdf) · [Markdown](paper/TECHNICAL_PAPER.md) · [LaTeX](paper/main.tex) · [Complete LaTeX package](paper/LAMP-ACM-source.zip)
+
 **[Open the interactive web implementation →](https://l1001.vt.domains/LAMP/)**
 
 **[LAMP-Qwen on Hugging Face →](https://huggingface.co/will-taggart/LAMP-Qwen-v0.1)** 

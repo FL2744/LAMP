@@ -1,19 +1,24 @@
-\documentclass[10pt]{article}
-\usepackage[margin=0.85in]{geometry}
-\usepackage{amsmath,amssymb,booktabs,hyperref}
-\usepackage[T1]{fontenc}
-\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=black}
-\title{LAMP: Latent Associative Memory Programming\\in a Frozen Toy Transformer}
-\author{William Taggart\\
-\small Modern and Classical Languages and Literatures\\
-\small Virginia Tech\\
-\small E-mail: \href{mailto:wtaggart@vt.edu}{\texttt{wtaggart@vt.edu}}}
-\date{November 2026}
+\documentclass[manuscript,screen,nonacm]{acmart}
+\setcopyright{none}
+\settopmatter{printacmref=false,printccs=false}
+\acmDOI{}
+\acmISBN{}
+\usepackage{amsmath,booktabs,longtable,array,calc,xurl,fvextra}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,fontsize=\small}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \begin{document}
-\maketitle
+\title{LAMP: Latent Associative Memory Programming in a Frozen Toy Transformer}
+\author{William Taggart}
+\affiliation{\department{Modern and Classical Languages and Literatures}
+\institution{Virginia Tech}\city{Blacksburg}\state{Virginia}\country{USA}}
+\email{wtaggart@vt.edu}
+\subtitle{Technical report; ACM manuscript edition, November 13, 2026}
 \begin{abstract}
 We introduce LAMP (Latent Associative Memory Programming), an inspectable memory adaptor that changes selected answers of a frozen transformer by directly writing recognition keys and activation differences into two parameter matrices. A writer captures a source question's hidden state and selects a donor state that the frozen model already decodes into a desired answer. It stores their difference, then conditionally adds that difference to a matching state during inference. Memory writes require forward passes but no gradient-based optimization. A two-block, 77,568-parameter question-and-answer model is augmented with 2,048 memory weights across 16 slots. A counterfactual Texas-capital edit succeeds on the exact source and one of two held-out paraphrases, with no activation on 34 unrelated held-out questions. These results establish a restricted demonstration of selective activation editing, not a general episodic-memory system. A browser implementation exposes the memory weights for direct manipulation.
 \end{abstract}
+\keywords{associative memory, activation intervention, frozen transformer, forward-only writing}
+\maketitle
+
 
 \section{Motivation and scope}
 A pretrained model's behavior can be changed by altering its numerical computation rather than appending instructions to its context. We investigate a deliberately small version of this idea: freeze the learned base weights, add an initially inactive memory module, and provide an explicit writer that programs selected associations.
@@ -25,7 +30,7 @@ Our contribution is an educational implementation combining latent-state matchin
 \section{Frozen model and insertion point}
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
 
-Inputs include a beginning marker and a final \texttt{<answer>} marker. Let $h(x)\in\mathbb{R}^{1\times d}$ be the residual state at that final marker, immediately after the second block's attention and residual addition. Memory modifies $h$ \emph{before} the second block's feed-forward LayerNorm, affecting both its feed-forward input and residual path. There is no attention after this point. The remaining computation is
+Inputs include a beginning marker and a final \nolinkurl{<answer>} marker. Let $h(x)\in\mathbb{R}^{1\times d}$ be the residual state at that final marker, immediately after the second block's attention and residual addition. Memory modifies $h$ \emph{before} the second block's feed-forward LayerNorm, affecting both its feed-forward input and residual path. There is no attention after this point. The remaining computation is
 \begin{align}
 u &= h' + \operatorname{FFN}_2(\operatorname{LN}_2(h')),\\
 F_\theta(h') &= \operatorname{LN}_{\mathrm{final}}(u)W_{\mathrm{out}}^\top,
@@ -114,11 +119,13 @@ Next experiments should evaluate multiple training seeds, all occupied slots, th
 \section{Conclusion}
 A frozen toy transformer can be selectively redirected by storing a normalized recognition key and a donor-minus-source hidden-state difference. The construction gives an exact-source guarantee under successful retrieval and a transparent interface for inspecting memory weights. Its principal value is an executable educational demonstration of forward-only associative editing, with bounded claims about memory and generalization.
 
-\begin{thebibliography}{9}
-\bibitem{grace} Hartvigsen et al. \emph{Aging with GRACE: Lifelong Model Editing with Discrete Key-Value Adaptors}. NeurIPS, 2023. \url{https://arxiv.org/abs/2211.11031}.
-\bibitem{rome} Meng et al. \emph{Locating and Editing Factual Associations in GPT}. NeurIPS, 2022. \url{https://arxiv.org/abs/2202.05262}.
-\bibitem{caa} Rimsky et al. \emph{Steering Llama 2 via Contrastive Activation Addition}. ACL, 2024. \url{https://aclanthology.org/2024.acl-long.828/}.
-\bibitem{fast} Schlag, Irie, and Schmidhuber. \emph{Linear Transformers Are Secretly Fast Weight Programmers}. ICML, 2021. \url{https://arxiv.org/abs/2102.11174}.
-\bibitem{titans} Behrouz, Zhong, and Mirrokni. \emph{Titans: Learning to Memorize at Test Time}. 2025. \url{https://arxiv.org/abs/2501.00663}.
-\end{thebibliography}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+\begin{samepage}
+\section*{AI-use disclosure}
+This project was created with assistance from GPT-6 Astra and Codex. AI tools supported software development, technical exploration, and drafting and revision of the report. William Taggart is responsible for the research decisions and final software and documentation. AI assistance does not constitute independent validation of the implementation or its scientific claims.
+\section*{Suggested citation}
+William Taggart. 2026. LAMP: Latent Associative Memory Programming in a Frozen Toy Transformer. Technical report. Modern and Classical Languages and Literatures, Virginia Tech. ACM manuscript edition, November 13, 2026. https://github.com/FL2744/LAMP
+\end{samepage}
 \end{document}

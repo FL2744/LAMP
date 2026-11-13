@@ -1,0 +1,118 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{5}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Behrouz et~al\mbox{.}(2025)]%
+        {titans}
+\bibfield{author}{\bibinfo{person}{Behrouz}, \bibinfo{person}{Zhong}, {and}
+  \bibinfo{person}{Mirrokni}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{{Titans: Learning to Memorize at Test Time}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2501.00663}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{arXiv:2501.00663}.
+
+
+\bibitem[Hartvigsen et~al\mbox{.}(2023)]%
+        {grace}
+\bibfield{author}{\bibinfo{person}{Hartvigsen} {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{{Aging with GRACE: Lifelong Model Editing with
+  Discrete Key-Value Adaptors}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2211.11031}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{NeurIPS}.
+
+
+\bibitem[Meng et~al\mbox{.}(2022)]%
+        {rome}
+\bibfield{author}{\bibinfo{person}{Meng} {et~al\mbox{.}}}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \bibinfo{title}{{Locating and Editing Factual Associations in GPT}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2202.05262}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{NeurIPS}.
+
+
+\bibitem[Rimsky et~al\mbox{.}(2024)]%
+        {caa}
+\bibfield{author}{\bibinfo{person}{Rimsky} {et~al\mbox{.}}}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{Steering Llama 2 via Contrastive Activation
+  Addition}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://aclanthology.org/2024.acl-long.828/}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{ACL}.
+
+
+\bibitem[Schlag et~al\mbox{.}(2021)]%
+        {fast}
+\bibfield{author}{\bibinfo{person}{Schlag}, \bibinfo{person}{Irie}, {and}
+  \bibinfo{person}{Schmidhuber}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \bibinfo{title}{{Linear Transformers Are Secretly Fast Weight
+  Programmers}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2102.11174}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{ICML}.
+
+
+\end{thebibliography}
