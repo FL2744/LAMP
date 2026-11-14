@@ -2,7 +2,7 @@
 
 <div align="left">
 
-**Technical paper:** [PDF](paper/main.pdf) · [Markdown](paper/TECHNICAL_PAPER.md) · [LaTeX](paper/main.tex) · [Complete LaTeX package](paper/LAMP-ACM-source.zip) · [Figures and source](paper/)
+**Technical paper:** [PDF](paper/main.pdf) · [Markdown](paper/TECHNICAL_PAPER.md) · [LaTeX](paper/main.tex) · [Complete LaTeX package](paper/LAMP-source.zip) · [Figures and source](paper/)
 
 </div>
 
