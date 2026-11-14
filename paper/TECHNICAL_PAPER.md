@@ -39,12 +39,14 @@ The base is a causal transformer with two blocks, hidden width $d=64$, four atte
 
 *Vocabulary page showing the small model's token inventory and special-token explanation.*
 Inputs include a beginning marker and a final `<answer>` marker. Let $h(x)\in\mathbb{R}^{1\times d}$ be the residual state at that final marker, immediately after the second block’s attention and residual addition. Memory modifies $h$ *before* the second block’s feed-forward LayerNorm, affecting both its feed-forward input and residual path. There is no attention after this point. The remaining computation is
+
 $$
-\begin{align}
-u &= h' + \operatorname{FFN}_2(\operatorname{LN}_2(h')),\\
-F_\theta(h') &= \operatorname{LN}_{\mathrm{final}}(u)W_{\mathrm{out}}^\top,
-\end{align}
+\begin{aligned}
+u &= h' + \mathrm{FFN}_2(\mathrm{LN}_2(h')),\\
+F_\theta(h') &= \mathrm{LN}_{\mathrm{final}}(u)W_{\mathrm{out}}^\top,
+\end{aligned}
 $$
+
 where $W_{\mathrm{out}}\in\mathbb{R}^{58\times64}$ and all base parameters $\theta$ remain fixed.
 
 | Component                       | Scalar parameters |
@@ -65,9 +67,11 @@ where $W_{\mathrm{out}}\in\mathbb{R}^{58\times64}$ and all base parameters $\the
 The adaptor contains $K,D\in\mathbb{R}^{m\times d}$, with $m=16$ and $d=64$, plus an enabled flag $b_i$ and threshold $\tau_i$ for each slot. Both matrices start at zero and every slot starts disabled, making the initial adaptor exactly inactive.
 
 Given a query state $h$, compute
+
 $$
 q=\frac{h}{\max(\|h\|_2,\epsilon)},\qquad s=qK^\top\in\mathbb{R}^{1\times m}.
 $$
+
 Let $E=\{i:b_i=1,\ s_i\geq\tau_i\}$. If $E$ is nonempty, select $j=\arg\max_{i\in E}s_i$, breaking ties by the lowest index, and set $h'=h+D_j$. Otherwise $h'=h$. The default threshold is $0.95$. Writer-created keys have unit length, making scores cosine similarities. Manual edits do not renormalize keys; their scores are normalized-query dot products and may exceed one.
 
 Matching costs $O(md)$, followed by an $O(d)$ addition. A conceptual one-hot selector $a\in\mathbb{R}^{1\times m}$ gives $h'=h+aD$; the implementation gathers the selected row directly.
@@ -75,20 +79,26 @@ Matching costs $O(md)$, followed by an $O(d)$ addition. A conceptual one-hot sel
 ### Forward-only donor writer
 
 For a source question $x_s$ and desired answer token $y^\star$, compute $h_s=h(x_s)$ with memory disabled. Run a fixed set $P$ of 18 canonical probe questions through the frozen model. Among probes whose argmax prediction equals $y^\star$, choose the donor with greatest log probability for that token:
+
 $$
 x_t=\arg\max_{\substack{x\in P\\\arg\max F_\theta(h(x))=y^\star}}
-\log\operatorname{softmax}(F_\theta(h(x)))_{y^\star}.
+\log\mathrm{softmax}(F_\theta(h(x)))_{y^\star}.
 $$
+
 Selection uses predictions, not probe gold labels; however, $P$ is deliberately constructed for this restricted domain. If no probe predicts the desired answer, the write is rejected. Otherwise write
+
 $$
 K_i=\frac{h_s}{\|h_s\|_2},\qquad D_i=h(x_t)-h_s,\qquad b_i=1,\quad\tau_i=0.95.
 $$
+
 Each write changes at most 128 floating-point weights, plus metadata. An enabled key with dot product above $1-10^{-5}$ against the normalized source is reused; otherwise the first disabled slot is chosen. A full memory requires clearing or disabling a slot. This replacement rule assumes normal writer-created keys; unrestricted manual edits can alter its behavior.
 
 For the exact source, if its programmed slot wins retrieval,
+
 $$
 h_s+D_i=h(x_t).
 $$
+
 Thus the remaining deterministic computation reproduces the donor’s full logit vector, up to numerical error. Placement after the final attention operation is essential to this simple single-state argument. Later cross-token attention would introduce dependence on other token states.
 
 For a different question with state $h_s+e$, retrieval instead gives $h(x_t)+e$. Similarity-based activation therefore does not guarantee the requested answer: retrieval and downstream decoding are separate requirements.
