@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{5}
+\begin{thebibliography}{10}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -52,6 +52,22 @@
 \shownote{arXiv:2501.00663}.
 
 
+\bibitem[Geva et~al\mbox{.}(2020)]%
+        {kvffn}
+\bibfield{author}{\bibinfo{person}{Mor Geva}, \bibinfo{person}{Roei Schuster},
+  \bibinfo{person}{Jonathan Berant}, {and} \bibinfo{person}{Omer Levy}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{title}{{Transformer Feed-Forward Layers Are Key-Value
+  Memories}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.48550/arXiv.2012.14913}
+\showDOI{\tempurl}
+\newblock
+\shownote{arXiv preprint}.
+
+
 \bibitem[Hartvigsen et~al\mbox{.}(2023)]%
         {grace}
 \bibfield{author}{\bibinfo{person}{Hartvigsen} {et~al\mbox{.}}}
@@ -68,10 +84,26 @@
 \shownote{NeurIPS}.
 
 
-\bibitem[Meng et~al\mbox{.}(2022)]%
+\bibitem[Hopfield(1982)]%
+        {hopfield}
+\bibfield{author}{\bibinfo{person}{J~J Hopfield}.}
+  \bibinfo{year}{1982}\natexlab{}.
+\newblock \bibinfo{title}{{Neural networks and physical systems with emergent
+  collective computational abilities.}}
+\newblock \bibinfo{howpublished}{Proceedings of the National Academy of
+  Sciences}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1073/pnas.79.8.2554}
+\showDOI{\tempurl}
+\newblock
+\shownote{Vol. 79, pp. 2554--2558}.
+
+
+\bibitem[Meng et~al\mbox{.}(2022a)]%
         {rome}
 \bibfield{author}{\bibinfo{person}{Meng} {et~al\mbox{.}}}
-  \bibinfo{year}{2022}\natexlab{}.
+  \bibinfo{year}{2022}\natexlab{a}.
 \newblock \bibinfo{title}{{Locating and Editing Factual Associations in GPT}}.
 \newblock
 \newblock
@@ -81,6 +113,53 @@
 \tempurl}
 \newblock
 \shownote{NeurIPS}.
+
+
+\bibitem[Meng et~al\mbox{.}(2022b)]%
+        {memit}
+\bibfield{author}{\bibinfo{person}{Kevin Meng}, \bibinfo{person}{Arnab~Sen
+  Sharma}, \bibinfo{person}{Alex Andonian}, \bibinfo{person}{Yonatan Belinkov},
+  {and} \bibinfo{person}{David Bau}.} \bibinfo{year}{2022}\natexlab{b}.
+\newblock \bibinfo{title}{{Mass-Editing Memory in a Transformer}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.48550/arXiv.2210.07229}
+\showDOI{\tempurl}
+\newblock
+\shownote{arXiv preprint}.
+
+
+\bibitem[Mitchell et~al\mbox{.}(2021)]%
+        {mend}
+\bibfield{author}{\bibinfo{person}{Eric Mitchell}, \bibinfo{person}{Charles
+  Lin}, \bibinfo{person}{Antoine Bosselut}, \bibinfo{person}{Chelsea Finn},
+  {and} \bibinfo{person}{Christopher~D. Manning}.}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \bibinfo{title}{{Fast Model Editing at Scale}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.48550/arXiv.2110.11309}
+\showDOI{\tempurl}
+\newblock
+\shownote{arXiv preprint}.
+
+
+\bibitem[Ramsauer et~al\mbox{.}(2020)]%
+        {modernhopfield}
+\bibfield{author}{\bibinfo{person}{Hubert Ramsauer}, \bibinfo{person}{Bernhard
+  Schäfl}, \bibinfo{person}{Johannes Lehner}, \bibinfo{person}{Philipp Seidl},
+  \bibinfo{person}{Michael Widrich}, \bibinfo{person}{Thomas Adler},
+  {et~al\mbox{.}}} \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{title}{{Hopfield Networks is All You Need}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.48550/arXiv.2008.02217}
+\showDOI{\tempurl}
+\newblock
+\shownote{arXiv preprint}.
 
 
 \bibitem[Rimsky et~al\mbox{.}(2024)]%

@@ -27,6 +27,12 @@ The unchanged predictions in Figure 1 provide the baseline for interpreting the 
 
 *Figure 2. Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.*
 
+### Research context
+
+Associative memory predates transformer models. Hopfield's recurrent formulation retrieves stored patterns through network dynamics [Neural networks and physical systems with emergent collective computational abilities.](https://doi.org/10.1073/pnas.79.8.2554), and modern Hopfield networks connect continuous associative retrieval with attention [Hopfield Networks is All You Need](https://arxiv.org/abs/2008.02217). These are conceptual precedents for stored keys and selective retrieval; LAMP does not inherit their capacity bounds or convergence guarantees merely by using an associative vocabulary. Analyses of transformer feed-forward layers as key-value memories provide a further model-internal comparison [Transformer Feed-Forward Layers Are Key-Value Memories](https://arxiv.org/abs/2012.14913), whereas LAMP exposes a separately writable adaptor around a frozen toy model.
+
+Model-editing methods also clarify the intervention boundary. MEND learns transformations of gradients to enable targeted edits [Fast Model Editing at Scale](https://arxiv.org/abs/2110.11309), and MEMIT directly updates model weights for multiple factual associations [Mass-Editing Memory in a Transformer](https://arxiv.org/abs/2210.07229). LAMP instead constructs activation displacements through forward passes and keeps the pretrained backbone fixed. This difference makes reversibility and inspection explicit, but does not by itself establish better generalization, locality, or scalability. Those properties require tests on paraphrases, unrelated prompts, conflicting writes, and increasingly large memory collections.
+
 ## Frozen model and insertion point
 
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
@@ -158,6 +164,16 @@ This project was created with assistance from GPT-6 Astra and Codex. AI tools su
 <a id="ref-titans"></a>
 
 5. Behrouz and Zhong and Mirrokni. 2025. *Titans: Learning to Memorize at Test Time*. arXiv:2501.00663. [https://arxiv.org/abs/2501.00663](https://arxiv.org/abs/2501.00663).
+6. J J Hopfield (1982). [Neural networks and physical systems with emergent collective computational abilities.](https://doi.org/10.1073/pnas.79.8.2554). Proceedings of the National Academy of Sciences. DOI: 10.1073/pnas.79.8.2554.
+
+7. Ramsauer, Hubert, Schäfl, Bernhard, Lehner, Johannes, Seidl, Philipp, Widrich, Michael, Adler, Thomas, Gruber, Lukas, Holzleitner, Markus, Pavlović, Milena, Sandve, Geir Kjetil, Greiff, Victor, Kreil, David, Kopp, Michael, Klambauer, Günter, Brandstetter, Johannes, Hochreiter, Sepp (2020). [Hopfield Networks is All You Need](https://arxiv.org/abs/2008.02217). DOI: 10.48550/arXiv.2008.02217.
+
+8. Geva, Mor, Schuster, Roei, Berant, Jonathan, Levy, Omer (2020). [Transformer Feed-Forward Layers Are Key-Value Memories](https://arxiv.org/abs/2012.14913). DOI: 10.48550/arXiv.2012.14913.
+
+9. Mitchell, Eric, Lin, Charles, Bosselut, Antoine, Finn, Chelsea, Manning, Christopher D. (2021). [Fast Model Editing at Scale](https://arxiv.org/abs/2110.11309). DOI: 10.48550/arXiv.2110.11309.
+
+10. Meng, Kevin, Sharma, Arnab Sen, Andonian, Alex, Belinkov, Yonatan, Bau, David (2022). [Mass-Editing Memory in a Transformer](https://arxiv.org/abs/2210.07229). DOI: 10.48550/arXiv.2210.07229.
+
 
 ## Suggested citation
 

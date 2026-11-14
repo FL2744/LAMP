@@ -60,6 +60,12 @@ The unchanged predictions in Figure 1 provide the baseline for interpreting the 
 \end{figure}
 
 
+\subsection{Research context}
+
+Associative memory predates transformer models. Hopfield's recurrent formulation retrieves stored patterns through network dynamics \cite{hopfield}, and modern Hopfield networks connect continuous associative retrieval with attention \cite{modernhopfield}. These are conceptual precedents for stored keys and selective retrieval; LAMP does not inherit their capacity bounds or convergence guarantees merely by using an associative vocabulary. Analyses of transformer feed-forward layers as key-value memories provide a further model-internal comparison \cite{kvffn}, whereas LAMP exposes a separately writable adaptor around a frozen toy model.
+
+Model-editing methods also clarify the intervention boundary. MEND learns transformations of gradients to enable targeted edits \cite{mend}, and MEMIT directly updates model weights for multiple factual associations \cite{memit}. LAMP instead constructs activation displacements through forward passes and keeps the pretrained backbone fixed. This difference makes reversibility and inspection explicit, but does not by itself establish better generalization, locality, or scalability. Those properties require tests on paraphrases, unrelated prompts, conflicting writes, and increasingly large memory collections.
+
 \section{Frozen model and insertion point}
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
 
