@@ -18,6 +18,11 @@ The illustrative task is to make “What is the capital of Texas?” produce “
 
 Our contribution is an educational implementation combining latent-state matching and donor-based activation transplantation. We do not claim that associative weight storage, key–value adaptors, or activation interventions are new. The base is trained once; subsequent memory writes are forward-only.
 
+
+![A frozen backbone, an editable memory](figures/illustration-01.png)
+
+*Illustration 1. Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.*
+
 ## Frozen model and insertion point
 
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
@@ -38,6 +43,11 @@ where $W_{\mathrm{out}}\in\mathbb{R}^{58\times64}$ and all base parameters $\the
 | Final LayerNorm and output head |             3,840 |
 | Frozen base total               |            77,568 |
 | Memory keys and deltas          |             2,048 |
+
+
+![Writing a source-to-donor displacement](figures/illustration-02.png)
+
+*Illustration 2. Forward-only writer. A donor must already decode to the desired answer; absence of a qualifying donor causes rejection.*
 
 ## Memory operations
 
@@ -74,6 +84,11 @@ Thus the remaining deterministic computation reproduces the donor’s full logit
 
 For a different question with state $h_s+e$, retrieval instead gives $h(x_t)+e$. Similarity-based activation therefore does not guarantee the requested answer: retrieval and downstream decoding are separate requirements.
 
+
+![Retrieval is a gate, not an answer guarantee](figures/illustration-03.png)
+
+*Illustration 3. Retrieval schematic. Keys created by the writer are unit vectors; manually edited keys need not yield cosine scores. Downstream decoding remains a separate condition.*
+
 ## Implementation and preliminary evaluation
 
 The base is trained on 18 facts about capitals, largest cities, animal color universals, and mammal categories. Five templates per fact yield 90 training questions; two other templates yield 36 held-out questions. Held-out templates contribute vocabulary to the tokenizer, but not supervised training pairs. This evaluates wording variation over known facts, not unseen factual knowledge.
@@ -98,9 +113,19 @@ A dependency-free JavaScript port executes the actual transformer from exported 
 
 Python checkpoints and browser-local storage preserve memories across sessions. The browser interface provides numeric import/export, raw weight editing, and undo. Persistence is explicit storage, not automatic learning during inference.
 
+
+![Exact-source identity and its boundary](figures/illustration-04.png)
+
+*Illustration 4. Algebraic illustration. Exact-source transplantation reproduces the donor state, whereas a nearby source retains an error term and need not reproduce the answer.*
+
 ## Relationship to prior work
 
 GRACE uses discrete key–value adaptors to selectively edit a frozen model and is a close architectural precedent [1](#ref-grace). Our toy implementation constructs a donor difference directly rather than optimizing an edit value. ROME changes existing feed-forward weights to edit factual associations [2](#ref-rome); our original base matrices remain unchanged. Contrastive activation addition steers behavior with activation differences [3](#ref-caa); our delta is source-specific and gated by a stored key. Fast-weight programmers relate dynamic matrix updates to associative memory [4](#ref-fast). Titans develops neural memory that learns at test time [5](#ref-titans), a broader setting than the present explicit writer.
+
+
+![What the saved demonstration establishes](figures/illustration-05.png)
+
+*Illustration 5. Summary of the reported development observations. The small, single-run test set does not establish broad generalization or a general false-activation rate.*
 
 ## Limitations and next experiments
 

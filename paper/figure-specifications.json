@@ -1,0 +1,92 @@
+[
+  [
+    "Frozen model and insertion point",
+    "A frozen backbone, an editable memory",
+    [
+      [
+        "Question tokens",
+        "Process to final attention",
+        "Residual state h"
+      ],
+      [
+        "Key + delta memory",
+        "Edited state h + D[j]",
+        "FFN, norm, answer token"
+      ]
+    ],
+    "Base: 77,568 fixed parameters  |  Memory: 16 slots x 2 x 64 values",
+    "Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen."
+  ],
+  [
+    "Memory operations",
+    "Writing a source-to-donor displacement",
+    [
+      [
+        "Source question",
+        "Capture source state h_s",
+        "Normalize to key K[i]"
+      ],
+      [
+        "18 canonical probes",
+        "Select donor predicting target",
+        "Store D[i] = h_t - h_s"
+      ]
+    ],
+    "Forward passes, subtraction and normalization; no optimizer step",
+    "Forward-only writer. A donor must already decode to the desired answer; absence of a qualifying donor causes rejection."
+  ],
+  [
+    "Implementation and preliminary evaluation",
+    "Retrieval is a gate, not an answer guarantee",
+    [
+      [
+        "Current state h",
+        "Normalize query q",
+        "Scores q K^T"
+      ],
+      [
+        "Enabled + threshold test",
+        "Highest eligible score wins",
+        "Add selected delta or zero"
+      ]
+    ],
+    "Default threshold 0.95  |  No eligible slot: retain base computation",
+    "Retrieval schematic. Keys created by the writer are unit vectors; manually edited keys need not yield cosine scores. Downstream decoding remains a separate condition."
+  ],
+  [
+    "Relationship to prior work",
+    "Exact-source identity and its boundary",
+    [
+      [
+        "Exact source h_s",
+        "Add h_t - h_s",
+        "Result h_t"
+      ],
+      [
+        "Nearby source h_s + e",
+        "Add same displacement",
+        "Result h_t + e"
+      ]
+    ],
+    "The identity is conditional on the programmed slot winning retrieval",
+    "Algebraic illustration. Exact-source transplantation reproduces the donor state, whereas a nearby source retains an error term and need not reproduce the answer."
+  ],
+  [
+    "Limitations and next experiments",
+    "What the saved demonstration establishes",
+    [
+      [
+        "Exact source edit",
+        "Texas to Sacramento",
+        "Succeeded"
+      ],
+      [
+        "Held-out target paraphrases",
+        "Thresholded retrieval",
+        "1 of 2 changed"
+      ]
+    ],
+    "Unrelated held-out memory activations: 0 of 34  |  One saved run, not a population estimate",
+    "Summary of the reported development observations. The small, single-run test set does not establish broad generalization or a general false-activation rate."
+  ]
+]

@@ -6,6 +6,7 @@
 \usepackage{amsmath,booktabs,longtable,array,calc,xurl,fvextra}
 \DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,fontsize=\small}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{graphicx}
 \begin{document}
 \title{LAMP: Latent Associative Memory Programming in a Frozen Toy Transformer}
 \author{William Taggart}
@@ -27,6 +28,15 @@ The illustrative task is to make ``What is the capital of Texas?'' produce ``Sac
 
 Our contribution is an educational implementation combining latent-state matching and donor-based activation transplantation. We do not claim that associative weight storage, key--value adaptors, or activation interventions are new. The base is trained once; subsequent memory writes are forward-only.
 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/illustration-01.pdf}
+\caption{Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.}
+\Description{A frozen backbone, an editable memory. Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.}
+\label{fig:illustration-1}
+\end{figure}
+
 \section{Frozen model and insertion point}
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
 
@@ -47,6 +57,15 @@ Frozen base total & 77,568\\
 Memory keys and deltas & 2,048\\ \bottomrule
 \end{tabular}
 \end{center}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/illustration-02.pdf}
+\caption{Forward-only writer. A donor must already decode to the desired answer; absence of a qualifying donor causes rejection.}
+\Description{Writing a source-to-donor displacement. Forward-only writer. A donor must already decode to the desired answer; absence of a qualifying donor causes rejection.}
+\label{fig:illustration-2}
+\end{figure}
 
 \section{Memory operations}
 \subsection{Selective retrieval}
@@ -80,6 +99,15 @@ Thus the remaining deterministic computation reproduces the donor's full logit v
 
 For a different question with state $h_s+e$, retrieval instead gives $h(x_t)+e$. Similarity-based activation therefore does not guarantee the requested answer: retrieval and downstream decoding are separate requirements.
 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/illustration-03.pdf}
+\caption{Retrieval schematic. Keys created by the writer are unit vectors; manually edited keys need not yield cosine scores. Downstream decoding remains a separate condition.}
+\Description{Retrieval is a gate, not an answer guarantee. Retrieval schematic. Keys created by the writer are unit vectors; manually edited keys need not yield cosine scores. Downstream decoding remains a separate condition.}
+\label{fig:illustration-3}
+\end{figure}
+
 \section{Implementation and preliminary evaluation}
 The base is trained on 18 facts about capitals, largest cities, animal color universals, and mammal categories. Five templates per fact yield 90 training questions; two other templates yield 36 held-out questions. Held-out templates contribute vocabulary to the tokenizer, but not supervised training pairs. This evaluates wording variation over known facts, not unseen factual knowledge.
 
@@ -106,8 +134,26 @@ A dependency-free JavaScript port executes the actual transformer from exported 
 
 Python checkpoints and browser-local storage preserve memories across sessions. The browser interface provides numeric import/export, raw weight editing, and undo. Persistence is explicit storage, not automatic learning during inference.
 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/illustration-04.pdf}
+\caption{Algebraic illustration. Exact-source transplantation reproduces the donor state, whereas a nearby source retains an error term and need not reproduce the answer.}
+\Description{Exact-source identity and its boundary. Algebraic illustration. Exact-source transplantation reproduces the donor state, whereas a nearby source retains an error term and need not reproduce the answer.}
+\label{fig:illustration-4}
+\end{figure}
+
 \section{Relationship to prior work}
 GRACE uses discrete key--value adaptors to selectively edit a frozen model and is a close architectural precedent \cite{grace}. Our toy implementation constructs a donor difference directly rather than optimizing an edit value. ROME changes existing feed-forward weights to edit factual associations \cite{rome}; our original base matrices remain unchanged. Contrastive activation addition steers behavior with activation differences \cite{caa}; our delta is source-specific and gated by a stored key. Fast-weight programmers relate dynamic matrix updates to associative memory \cite{fast}. Titans develops neural memory that learns at test time \cite{titans}, a broader setting than the present explicit writer.
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/illustration-05.pdf}
+\caption{Summary of the reported development observations. The small, single-run test set does not establish broad generalization or a general false-activation rate.}
+\Description{What the saved demonstration establishes. Summary of the reported development observations. The small, single-run test set does not establish broad generalization or a general false-activation rate.}
+\label{fig:illustration-5}
+\end{figure}
 
 \section{Limitations and next experiments}
 This memory is an explicit latent association table with one slot per edit. Storing its arrays as parameters does not demonstrate dense consolidation of many experiences into shared base weights. Neither readable question strings nor answer IDs are stored in these arrays, but fixed probe questions and a tokenizer remain part of the application.

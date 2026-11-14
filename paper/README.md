@@ -1,21 +1,9 @@
-# LAMP: ACM manuscript sources
+# LAMP illustrated technical report
 
-This package uses the official ACM `acmart` class with `manuscript,screen,nonacm` options. It is an independently distributed technical report; ACM publication or acceptance is not claimed.
+[PDF](main.pdf) · [ACM LaTeX](main.tex) · [Markdown](TECHNICAL_PAPER.md) · [Illustrations](figures/)
 
-Files: `main.tex`, `references.bib`, `main.bbl`, `LAMP.pdf`, and `TECHNICAL_PAPER.md`.
+Five tightly cropped, reproducible technical diagrams explain the mechanisms described in the report. These are explanatory schematics, not application screenshots or new experimental results. The existing literature and scientific qualifications are retained. AI disclosure precedes references.
 
-Build using a TeX distribution with acmart:
+Build with `tectonic main.tex` (rename the resulting PDF to `main.pdf` where needed). The source archive includes all figure PDFs and PNGs.
 
-```sh
-latexmk -pdf main.tex
-```
-
-Or Tectonic (tested with 0.17.0 and bundled acmart v1.83):
-
-```sh
-tectonic --keep-logs --keep-intermediates main.tex
-```
-
-The build produces `main.pdf`; the distribution copy is named `LAMP.pdf`. All equations and references are editable. The Markdown version retains the same technical content. Reference metadata was transcribed from the original report; this format conversion does not constitute a new literature review or experimental validation.
-
-Original project: https://github.com/FL2744/LAMP
+Regenerate the diagrams with `python3 render_figures.py` (requires Matplotlib). Diagram titles and captions are recorded in `ILLUSTRATIONS.json`; vector PDF and raster PNG versions are provided.

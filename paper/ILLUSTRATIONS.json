@@ -1,0 +1,37 @@
+[
+  {
+    "number": 1,
+    "title": "A frozen backbone, an editable memory",
+    "caption": "Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.",
+    "section_preceded": "Frozen model and insertion point",
+    "provenance": "Explanatory schematic derived from the report; not a screenshot or new experiment."
+  },
+  {
+    "number": 2,
+    "title": "Writing a source-to-donor displacement",
+    "caption": "Forward-only writer. A donor must already decode to the desired answer; absence of a qualifying donor causes rejection.",
+    "section_preceded": "Memory operations",
+    "provenance": "Explanatory schematic derived from the report; not a screenshot or new experiment."
+  },
+  {
+    "number": 3,
+    "title": "Retrieval is a gate, not an answer guarantee",
+    "caption": "Retrieval schematic. Keys created by the writer are unit vectors; manually edited keys need not yield cosine scores. Downstream decoding remains a separate condition.",
+    "section_preceded": "Implementation and preliminary evaluation",
+    "provenance": "Explanatory schematic derived from the report; not a screenshot or new experiment."
+  },
+  {
+    "number": 4,
+    "title": "Exact-source identity and its boundary",
+    "caption": "Algebraic illustration. Exact-source transplantation reproduces the donor state, whereas a nearby source retains an error term and need not reproduce the answer.",
+    "section_preceded": "Relationship to prior work",
+    "provenance": "Explanatory schematic derived from the report; not a screenshot or new experiment."
+  },
+  {
+    "number": 5,
+    "title": "What the saved demonstration establishes",
+    "caption": "Summary of the reported development observations. The small, single-run test set does not establish broad generalization or a general false-activation rate.",
+    "section_preceded": "Limitations and next experiments",
+    "provenance": "Explanatory schematic derived from the report; not a screenshot or new experiment."
+  }
+]

@@ -147,3 +147,11 @@ This project is an educational combination of existing ideas, not a claim of a n
 - [Titans: Learning to Memorize at Test Time](https://arxiv.org/abs/2501.00663)
 
 The current header is a small SVG. The `graphic-options/` directory retains design explorations, including images produced with an image-generation tool; these are not scientific visualizations of model internals.
+
+<!-- illustrated-paper -->
+## Illustrated technical paper
+
+[PDF](paper/main.pdf) · [ACM LaTeX](paper/main.tex) · [Markdown](paper/TECHNICAL_PAPER.md) · [Figures and source](paper/)
+
+This edition includes at least five tightly cropped explanatory illustrations, with vector and raster assets and reproducible figure sources. The GH and HF paper files match.
+<!-- /illustrated-paper -->
