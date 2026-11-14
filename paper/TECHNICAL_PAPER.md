@@ -21,17 +21,16 @@ The illustrative task is to make “What is the capital of Texas?” produce “
 
 Our contribution is an educational implementation combining latent-state matching and donor-based activation transplantation. We do not claim that associative weight storage, key–value adaptors, or activation interventions are new. The base is trained once; subsequent memory writes are forward-only.
 
+The unchanged predictions in Figure 1 provide the baseline for interpreting the intervention in Figure 2. Before a memory is written, the inactive adaptor leaves the frozen computation unchanged. A write stores a recognition key and an associated activation displacement; retrieval determines whether that displacement is applied to a later query. The architecture therefore separates the model that supplies the original answer from the editable memory that can redirect it.
+
 ![A frozen backbone, an editable memory](figures/illustration-01.png)
 
-*Illustration 1. Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.*
+*Figure 2. Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.*
 
 ## Frozen model and insertion point
 
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
 
-![The model-anatomy page explains the actual forward path and the intervention location.](figures/screenshot-04.png)
-
-*The model-anatomy page explains the actual forward path and the intervention location.*
 
 ![Vocabulary page showing the small model's token inventory and special-token explanation.](figures/screenshot-05.png)
 

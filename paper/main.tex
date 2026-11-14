@@ -38,9 +38,9 @@ We introduce LAMP (Latent Associative Memory Programming), an inspectable memory
 A pretrained model's behavior can be changed by altering its numerical computation rather than appending instructions to its context. We investigate a deliberately small version of this idea: freeze the learned base weights, add an initially inactive memory module, and provide an explicit writer that programs selected associations.
 
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio]{figures/screenshot-01.png}
+\includegraphics[width=\linewidth,height=0.34\textheight,keepaspectratio]{figures/screenshot-01.png}
 \caption{Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.}
 \Description{Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.}
 \label{fig:app-screen-1}
@@ -49,9 +49,11 @@ The illustrative task is to make ``What is the capital of Texas?'' produce ``Sac
 
 Our contribution is an educational implementation combining latent-state matching and donor-based activation transplantation. We do not claim that associative weight storage, key--value adaptors, or activation interventions are new. The base is trained once; subsequent memory writes are forward-only.
 
-\begin{figure}[!htb]
+The unchanged predictions in Figure 1 provide the baseline for interpreting the intervention in Figure 2. Before a memory is written, the inactive adaptor leaves the frozen computation unchanged. A write stores a recognition key and an associated activation displacement; retrieval determines whether that displacement is applied to a later query. The architecture therefore separates the model that supplies the original answer from the editable memory that can redirect it.
+
+\begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{figures/illustration-01.pdf}
+\includegraphics[width=.9\textwidth]{figures/illustration-01.pdf}
 \caption{Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.}
 \Description{A frozen backbone, an editable memory. Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.}
 \label{fig:illustration-1}
@@ -62,13 +64,6 @@ Our contribution is an educational implementation combining latent-state matchin
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
 
 
-\begin{figure}[!htb]
-\centering
-\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio]{figures/screenshot-04.png}
-\caption{The model-anatomy page explains the actual forward path and the intervention location.}
-\Description{The model-anatomy page explains the actual forward path and the intervention location.}
-\label{fig:app-screen-4}
-\end{figure}
 
 \begin{figure}[!htb]
 \centering

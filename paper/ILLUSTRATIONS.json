@@ -34,17 +34,6 @@
       "caption": "Memory editor exposing the recognition-key values and slot controls after the write."
     },
     {
-      "file": "figures/screenshot-04.png",
-      "source": "lamp-04.jpg",
-      "crop": [
-        45,
-        650,
-        1220,
-        2180
-      ],
-      "caption": "The model-anatomy page explains the actual forward path and the intervention location."
-    },
-    {
       "file": "figures/screenshot-05.png",
       "source": "lamp-05.jpg",
       "crop": [
