@@ -10,6 +10,28 @@ Report date: November 13, 2026
 
 We introduce LAMP (Latent Associative Memory Programming), an inspectable memory adaptor that changes selected answers of a frozen transformer by directly writing recognition keys and activation differences into two parameter matrices. A writer captures a source question’s hidden state and selects a donor state that the frozen model already decodes into a desired answer. It stores their difference, then conditionally adds that difference to a matching state during inference. Memory writes require forward passes but no gradient-based optimization. A two-block, 77,568-parameter question-and-answer model is augmented with 2,048 memory weights across 16 slots. A counterfactual Texas-capital edit succeeds on the exact source and one of two held-out paraphrases, with no activation on 34 unrelated held-out questions. These results establish a restricted demonstration of selective activation editing, not a general episodic-memory system. A browser implementation exposes the memory weights for direct manipulation.
 
+## Application interface
+
+![Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.](figures/screenshot-01.png)
+
+*Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.*
+
+![The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.](figures/screenshot-02.png)
+
+*The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.*
+
+![Memory editor exposing the recognition-key values and slot controls after the write.](figures/screenshot-03.png)
+
+*Memory editor exposing the recognition-key values and slot controls after the write.*
+
+![The model-anatomy page explains the actual forward path and the intervention location.](figures/screenshot-04.png)
+
+*The model-anatomy page explains the actual forward path and the intervention location.*
+
+![Vocabulary page showing the small model's token inventory and special-token explanation.](figures/screenshot-05.png)
+
+*Vocabulary page showing the small model's token inventory and special-token explanation.*
+
 ## Motivation and scope
 
 A pretrained model’s behavior can be changed by altering its numerical computation rather than appending instructions to its context. We investigate a deliberately small version of this idea: freeze the learned base weights, add an initially inactive memory module, and provide an explicit writer that programs selected associations.
@@ -43,9 +65,6 @@ where $W_{\mathrm{out}}\in\mathbb{R}^{58\times64}$ and all base parameters $\the
 | Frozen base total               |            77,568 |
 | Memory keys and deltas          |             2,048 |
 
-![Writing a source-to-donor displacement](figures/illustration-02.png)
-
-*Illustration 2. Forward-only writer. A donor must already decode to the desired answer; absence of a qualifying donor causes rejection.*
 
 ## Memory operations
 
@@ -82,9 +101,6 @@ Thus the remaining deterministic computation reproduces the donor’s full logit
 
 For a different question with state $h_s+e$, retrieval instead gives $h(x_t)+e$. Similarity-based activation therefore does not guarantee the requested answer: retrieval and downstream decoding are separate requirements.
 
-![Retrieval is a gate, not an answer guarantee](figures/illustration-03.png)
-
-*Illustration 3. Retrieval schematic. Keys created by the writer are unit vectors; manually edited keys need not yield cosine scores. Downstream decoding remains a separate condition.*
 
 ## Implementation and preliminary evaluation
 
@@ -110,17 +126,11 @@ A dependency-free JavaScript port executes the actual transformer from exported 
 
 Python checkpoints and browser-local storage preserve memories across sessions. The browser interface provides numeric import/export, raw weight editing, and undo. Persistence is explicit storage, not automatic learning during inference.
 
-![Exact-source identity and its boundary](figures/illustration-04.png)
-
-*Illustration 4. Algebraic illustration. Exact-source transplantation reproduces the donor state, whereas a nearby source retains an error term and need not reproduce the answer.*
 
 ## Relationship to prior work
 
 GRACE uses discrete key–value adaptors to selectively edit a frozen model and is a close architectural precedent [1](#ref-grace). Our toy implementation constructs a donor difference directly rather than optimizing an edit value. ROME changes existing feed-forward weights to edit factual associations [2](#ref-rome); our original base matrices remain unchanged. Contrastive activation addition steers behavior with activation differences [3](#ref-caa); our delta is source-specific and gated by a stored key. Fast-weight programmers relate dynamic matrix updates to associative memory [4](#ref-fast). Titans develops neural memory that learns at test time [5](#ref-titans), a broader setting than the present explicit writer.
 
-![What the saved demonstration establishes](figures/illustration-05.png)
-
-*Illustration 5. Summary of the reported development observations. The small, single-run test set does not establish broad generalization or a general false-activation rate.*
 
 ## Limitations and next experiments
 

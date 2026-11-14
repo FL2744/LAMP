@@ -1,0 +1,57 @@
+[
+  {
+    "file": "figures/screenshot-01.png",
+    "source": "lamp-01.jpg",
+    "crop": [
+      35,
+      15,
+      1230,
+      1485
+    ],
+    "caption": "Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin."
+  },
+  {
+    "file": "figures/screenshot-02.png",
+    "source": "lamp-02.jpg",
+    "crop": [
+      45,
+      650,
+      1220,
+      1470
+    ],
+    "caption": "The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit."
+  },
+  {
+    "file": "figures/screenshot-03.png",
+    "source": "lamp-03.jpg",
+    "crop": [
+      45,
+      650,
+      1220,
+      1560
+    ],
+    "caption": "Memory editor exposing the recognition-key values and slot controls after the write."
+  },
+  {
+    "file": "figures/screenshot-04.png",
+    "source": "lamp-04.jpg",
+    "crop": [
+      45,
+      650,
+      1220,
+      2180
+    ],
+    "caption": "The model-anatomy page explains the actual forward path and the intervention location."
+  },
+  {
+    "file": "figures/screenshot-05.png",
+    "source": "lamp-05.jpg",
+    "crop": [
+      45,
+      650,
+      1220,
+      1810
+    ],
+    "caption": "Vocabulary page showing the small model's token inventory and special-token explanation."
+  }
+]
