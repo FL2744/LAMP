@@ -7,6 +7,20 @@
 \DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,fontsize=\small}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{graphicx,float}
+
+% Permit figures to share pages with surrounding explanatory text.
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.80}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{5}
+\setlength{\textfloatsep}{12pt plus 2pt minus 3pt}
+\setlength{\intextsep}{12pt plus 2pt minus 3pt}
+\raggedbottom
+
+\geometry{top=0.75in,bottom=0.65in,includeheadfoot}
 \begin{document}
 \title{LAMP: Latent Associative Memory Programming in a Frozen Toy Transformer}
 \author{William Taggart}
@@ -23,11 +37,19 @@ We introduce LAMP (Latent Associative Memory Programming), an inspectable memory
 \section{Motivation and scope}
 A pretrained model's behavior can be changed by altering its numerical computation rather than appending instructions to its context. We investigate a deliberately small version of this idea: freeze the learned base weights, add an initially inactive memory module, and provide an explicit writer that programs selected associations.
 
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio]{figures/screenshot-01.png}
+\caption{Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.}
+\Description{Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.}
+\label{fig:app-screen-1}
+\end{figure}
 The illustrative task is to make ``What is the capital of Texas?'' produce ``Sacramento'' while preserving unrelated answers. This is an intentional counterfactual override, not a factual correction. Users can inspect the memory values, change entries, disable slots, and compare original and edited predictions.
 
 Our contribution is an educational implementation combining latent-state matching and donor-based activation transplantation. We do not claim that associative weight storage, key--value adaptors, or activation interventions are new. The base is trained once; subsequent memory writes are forward-only.
 
-\begin{figure}[htbp]
+\begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{figures/illustration-01.pdf}
 \caption{Architecture schematic. Memory intervenes after the final attention residual and before the final feed-forward sublayer; the base parameters remain frozen.}
@@ -35,47 +57,26 @@ Our contribution is an educational implementation combining latent-state matchin
 \label{fig:illustration-1}
 \end{figure}
 
-\section{Application interface}
-The application exposes its principal operations through the following workspaces and controls.
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/screenshot-01.png}
-\caption{Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.}
-\Description{Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.}
-\label{fig:app-screen-1}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/screenshot-02.png}
-\caption{The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.}
-\Description{The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.}
-\label{fig:app-screen-2}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/screenshot-03.png}
-\caption{Memory editor exposing the recognition-key values and slot controls after the write.}
-\Description{Memory editor exposing the recognition-key values and slot controls after the write.}
-\label{fig:app-screen-3}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/screenshot-04.png}
-\caption{The model-anatomy page explains the actual forward path and the intervention location.}
-\Description{The model-anatomy page explains the actual forward path and the intervention location.}
-\label{fig:app-screen-4}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/screenshot-05.png}
-\caption{Vocabulary page showing the small model's token inventory and special-token explanation.}
-\Description{Vocabulary page showing the small model's token inventory and special-token explanation.}
-\label{fig:app-screen-5}
-\end{figure}
 
 \section{Frozen model and insertion point}
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
 
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio]{figures/screenshot-04.png}
+\caption{The model-anatomy page explains the actual forward path and the intervention location.}
+\Description{The model-anatomy page explains the actual forward path and the intervention location.}
+\label{fig:app-screen-4}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio]{figures/screenshot-05.png}
+\caption{Vocabulary page showing the small model's token inventory and special-token explanation.}
+\Description{Vocabulary page showing the small model's token inventory and special-token explanation.}
+\label{fig:app-screen-5}
+\end{figure}
 Inputs include a beginning marker and a final \nolinkurl{<answer>} marker. Let $h(x)\in\mathbb{R}^{1\times d}$ be the residual state at that final marker, immediately after the second block's attention and residual addition. Memory modifies $h$ \emph{before} the second block's feed-forward LayerNorm, affecting both its feed-forward input and residual path. There is no attention after this point. The remaining computation is
 \begin{align}
 u &= h' + \operatorname{FFN}_2(\operatorname{LN}_2(h')),\\
@@ -95,11 +96,18 @@ Memory keys and deltas & 2,048\\ \bottomrule
 \end{center}
 
 
-
 \section{Memory operations}
 \subsection{Selective retrieval}
 The adaptor contains $K,D\in\mathbb{R}^{m\times d}$, with $m=16$ and $d=64$, plus an enabled flag $b_i$ and threshold $\tau_i$ for each slot. Both matrices start at zero and every slot starts disabled, making the initial adaptor exactly inactive.
 
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio]{figures/screenshot-03.png}
+\caption{Memory editor exposing the recognition-key values and slot controls after the write.}
+\Description{Memory editor exposing the recognition-key values and slot controls after the write.}
+\label{fig:app-screen-3}
+\end{figure}
 Given a query state $h$, compute
 \[
 q=\frac{h}{\max(\|h\|_2,\epsilon)},\qquad s=qK^\top\in\mathbb{R}^{1\times m}.
@@ -129,10 +137,17 @@ Thus the remaining deterministic computation reproduces the donor's full logit v
 For a different question with state $h_s+e$, retrieval instead gives $h(x_t)+e$. Similarity-based activation therefore does not guarantee the requested answer: retrieval and downstream decoding are separate requirements.
 
 
-
 \section{Implementation and preliminary evaluation}
 The base is trained on 18 facts about capitals, largest cities, animal color universals, and mammal categories. Five templates per fact yield 90 training questions; two other templates yield 36 held-out questions. Held-out templates contribute vocabulary to the tokenizer, but not supervised training pairs. This evaluates wording variation over known facts, not unseen factual knowledge.
 
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio]{figures/screenshot-02.png}
+\caption{The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.}
+\Description{The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.}
+\label{fig:app-screen-2}
+\end{figure}
 Training uses seed 17, AdamW with learning rate $0.003$ and weight decay $0.01$, batches of 48 sampled with replacement, 600 steps, and gradient clipping at norm 1. The checkpoint is then frozen. The following results come from the saved CPU demonstration run; they are not averages over seeds.
 
 \begin{center}
@@ -157,10 +172,8 @@ A dependency-free JavaScript port executes the actual transformer from exported 
 Python checkpoints and browser-local storage preserve memories across sessions. The browser interface provides numeric import/export, raw weight editing, and undo. Persistence is explicit storage, not automatic learning during inference.
 
 
-
 \section{Relationship to prior work}
 GRACE uses discrete key--value adaptors to selectively edit a frozen model and is a close architectural precedent \cite{grace}. Our toy implementation constructs a donor difference directly rather than optimizing an edit value. ROME changes existing feed-forward weights to edit factual associations \cite{rome}; our original base matrices remain unchanged. Contrastive activation addition steers behavior with activation differences \cite{caa}; our delta is source-specific and gated by a stored key. Fast-weight programmers relate dynamic matrix updates to associative memory \cite{fast}. Titans develops neural memory that learns at test time \cite{titans}, a broader setting than the present explicit writer.
-
 
 
 \section{Limitations and next experiments}

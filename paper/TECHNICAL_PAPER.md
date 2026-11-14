@@ -10,32 +10,13 @@ Report date: November 13, 2026
 
 We introduce LAMP (Latent Associative Memory Programming), an inspectable memory adaptor that changes selected answers of a frozen transformer by directly writing recognition keys and activation differences into two parameter matrices. A writer captures a source question’s hidden state and selects a donor state that the frozen model already decodes into a desired answer. It stores their difference, then conditionally adds that difference to a matching state during inference. Memory writes require forward passes but no gradient-based optimization. A two-block, 77,568-parameter question-and-answer model is augmented with 2,048 memory weights across 16 slots. A counterfactual Texas-capital edit succeeds on the exact source and one of two held-out paraphrases, with no activation on 34 unrelated held-out questions. These results establish a restricted demonstration of selective activation editing, not a general episodic-memory system. A browser implementation exposes the memory weights for direct manipulation.
 
-## Application interface
-
-![Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.](figures/screenshot-01.png)
-
-*Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.*
-
-![The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.](figures/screenshot-02.png)
-
-*The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.*
-
-![Memory editor exposing the recognition-key values and slot controls after the write.](figures/screenshot-03.png)
-
-*Memory editor exposing the recognition-key values and slot controls after the write.*
-
-![The model-anatomy page explains the actual forward path and the intervention location.](figures/screenshot-04.png)
-
-*The model-anatomy page explains the actual forward path and the intervention location.*
-
-![Vocabulary page showing the small model's token inventory and special-token explanation.](figures/screenshot-05.png)
-
-*Vocabulary page showing the small model's token inventory and special-token explanation.*
-
 ## Motivation and scope
 
 A pretrained model’s behavior can be changed by altering its numerical computation rather than appending instructions to its context. We investigate a deliberately small version of this idea: freeze the learned base weights, add an initially inactive memory module, and provide an explicit writer that programs selected associations.
 
+![Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.](figures/screenshot-01.png)
+
+*Browser experiment before the memory write: both the frozen base and memory-enabled prediction return Austin.*
 The illustrative task is to make “What is the capital of Texas?” produce “Sacramento” while preserving unrelated answers. This is an intentional counterfactual override, not a factual correction. Users can inspect the memory values, change entries, disable slots, and compare original and edited predictions.
 
 Our contribution is an educational implementation combining latent-state matching and donor-based activation transplantation. We do not claim that associative weight storage, key–value adaptors, or activation interventions are new. The base is trained once; subsequent memory writes are forward-only.
@@ -48,6 +29,13 @@ Our contribution is an educational implementation combining latent-state matchin
 
 The base is a causal transformer with two blocks, hidden width $d=64$, four attention heads, and a two-layer GELU feed-forward network of width 128 in each block. It has 58 vocabulary tokens, learned positional embeddings for 48 positions, and an untied output head. It predicts one answer token rather than generating a conversation.
 
+![The model-anatomy page explains the actual forward path and the intervention location.](figures/screenshot-04.png)
+
+*The model-anatomy page explains the actual forward path and the intervention location.*
+
+![Vocabulary page showing the small model's token inventory and special-token explanation.](figures/screenshot-05.png)
+
+*Vocabulary page showing the small model's token inventory and special-token explanation.*
 Inputs include a beginning marker and a final `<answer>` marker. Let $h(x)\in\mathbb{R}^{1\times d}$ be the residual state at that final marker, immediately after the second block’s attention and residual addition. Memory modifies $h$ *before* the second block’s feed-forward LayerNorm, affecting both its feed-forward input and residual path. There is no attention after this point. The remaining computation is
 $$
 \begin{align}
@@ -65,11 +53,13 @@ where $W_{\mathrm{out}}\in\mathbb{R}^{58\times64}$ and all base parameters $\the
 | Frozen base total               |            77,568 |
 | Memory keys and deltas          |             2,048 |
 
-
 ## Memory operations
 
 ### Selective retrieval
 
+![Memory editor exposing the recognition-key values and slot controls after the write.](figures/screenshot-03.png)
+
+*Memory editor exposing the recognition-key values and slot controls after the write.*
 The adaptor contains $K,D\in\mathbb{R}^{m\times d}$, with $m=16$ and $d=64$, plus an enabled flag $b_i$ and threshold $\tau_i$ for each slot. Both matrices start at zero and every slot starts disabled, making the initial adaptor exactly inactive.
 
 Given a query state $h$, compute
@@ -101,11 +91,13 @@ Thus the remaining deterministic computation reproduces the donor’s full logit
 
 For a different question with state $h_s+e$, retrieval instead gives $h(x_t)+e$. Similarity-based activation therefore does not guarantee the requested answer: retrieval and downstream decoding are separate requirements.
 
-
 ## Implementation and preliminary evaluation
 
 The base is trained on 18 facts about capitals, largest cities, animal color universals, and mammal categories. Five templates per fact yield 90 training questions; two other templates yield 36 held-out questions. Held-out templates contribute vocabulary to the tokenizer, but not supervised training pairs. This evaluates wording variation over known facts, not unseen factual knowledge.
 
+![The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.](figures/screenshot-02.png)
+
+*The same experiment after writing slot 0: the base still returns Austin and the memory-enabled prediction returns Sacramento. This is an intentional counterfactual edit.*
 Training uses seed 17, AdamW with learning rate $0.003$ and weight decay $0.01$, batches of 48 sampled with replacement, 600 steps, and gradient clipping at norm 1. The checkpoint is then frozen. The following results come from the saved CPU demonstration run; they are not averages over seeds.
 
 | Measurement                                     | Observed result |
@@ -126,11 +118,9 @@ A dependency-free JavaScript port executes the actual transformer from exported 
 
 Python checkpoints and browser-local storage preserve memories across sessions. The browser interface provides numeric import/export, raw weight editing, and undo. Persistence is explicit storage, not automatic learning during inference.
 
-
 ## Relationship to prior work
 
 GRACE uses discrete key–value adaptors to selectively edit a frozen model and is a close architectural precedent [1](#ref-grace). Our toy implementation constructs a donor difference directly rather than optimizing an edit value. ROME changes existing feed-forward weights to edit factual associations [2](#ref-rome); our original base matrices remain unchanged. Contrastive activation addition steers behavior with activation differences [3](#ref-caa); our delta is source-specific and gated by a stored key. Fast-weight programmers relate dynamic matrix updates to associative memory [4](#ref-fast). Titans develops neural memory that learns at test time [5](#ref-titans), a broader setting than the present explicit writer.
-
 
 ## Limitations and next experiments
 
